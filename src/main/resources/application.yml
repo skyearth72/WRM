@@ -1,0 +1,97 @@
+
+server:
+  address: 127.0.0.1
+  port: 8080
+  servlet:
+    context-path: /
+#    jsp:
+#      init-parameters:
+#        development: true
+        
+        
+spring:
+  mvc:
+    static-path-pattern: /static/**
+  web:
+    resources:
+      static-locations:
+      - classpath:/static/
+  # thymeleaf 참조 경로
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    # thymeleaf에 대한 캐시를 남기지 않는다. cache=false 설정(운영시는 true)
+    cache: false
+    # templates 디렉토리에 파일이 있는지 없는지 체크, 없으면 에러를 발생시킨다.
+    check-template-location: true 
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/jsp/
+#      suffix: .jsp
+    # https://github.com/brettwooldridge/HikariCP
+  datasource-hikari-event:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    #hikari url 설정
+    jdbcUrl: jdbc:log4jdbc:mariadb://127.0.0.1:3306/WRM
+    username: APP
+    password: APP
+    hikari:
+      pool-name: hikari-pool
+      auto-commit: false
+      transaction-isolation: TRANSACTION_READ_COMMITTED
+      # connection-timeout(milliseconds): default : 30000 (30초)
+      # Pool 에서 connection 을 가져오는 데 걸리는 최대 시간. 초과시 SQLException 발생
+      connection-timeout: 30000
+      # 최대 Pool Size
+      maximum-pool-size: 10
+      # 최소 Pool Size
+      minimum-idle: 10
+      # idle-timeout(milliseconds) : default : 600000 (1000 milliseconds X 60 X 10 : 10분)
+      # Step1) maximum-pool-size > minimum-idle 으로 설정한 경우만 idle-timeout 이 작동한다.
+      # Step2) Pool 내에 connection 의 idle 시간이 idle-timeout 시간이 되면 Pool 에서 제거
+      # Step3) connection Pool 의 갯수가 minimum-idle 의 갯수가 될 때까지 Step2 반복
+      idle-timeout: 600000
+      # max-lifetime(milliseconds) : default : 1800000 (1000 milliseconds X 60 X 30 : 30분)
+      # Pool 내에 connection 이 유지되는 최대 생존시간(초)
+      max-lifetime: 1800000
+      # keepalive-time(milliseconds) : default : 0 (최소 허용 값 : 30000 milliseconds, 권고: 분단위)
+      # Step1) keepalive-time < max-lifetime 으로 설정해야 한다.
+      keepalive-time: 1600000
+      # Pool 에서 connection 을 가져올때 validate query 수행한다.
+      # (JDBC4 를 지원하지 않는 Legacy Driver 를 위한 것)
+      # (JDBC4 를 지원하는 Driver : 이 속성을 설정하지 않는다. 만일 설정할 경우 error 발생)
+      connection-test-query: SELECT 1
+      # validation-timeout(milliseconds) : default : 5000 milliseconds (5초) (최소 : 250)
+      # Step1) validation-timeout < connection-timeout 으로 설정한다.
+      # Step2) 연결 상태를 테스트할 최대 시간
+      validation-timeout: 5000
+      # leak-detection-threshold: default : 2000 (2초) (0 : leak detection disabled)
+      # Step1) leak detection 체크 주기
+      leak-detection-threshold: 2000
+      
+      
+main:
+  setting:
+    code:
+      DB: D
+      LS: L
+    default:
+      isUseShortCut: Y
+      layout: T
+w5xml:
+  main:
+    tab: /cm/main/index_tabControl.xml
+    win: /cm/main/index_windowContainer.xml
+    wfm: /cm/main/index_wframe.xml
+  auth:
+    check: /cm/main/auth_check.xml
+  defIndex: /cm/main/index_tabControl.xml
+  login: /cm/main/login.xml
+resouce:
+  image:
+    img_empty_profile: /cm/images/ico_menu_on01.png
+system:
+  admin:
+    id: '100001'
+      
+      

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html
+    lang="ko"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+	<link rel="shortcut icon" th:data-contextPath="${#httpServletRequest.getContextPath()}" th:href="@{~/static/favicon.ico}" />
+	<title>WRM</title>
+	<script type="text/javascript" th:inline="javascript" >
+		var _context = [[${#httpServletRequest.getContextPath()}]];
+		var WebSquareExternal = {
+			"baseURI": _context + "/static/websquare/", 
+			"w2xPath" : _context + "/static" +  [[${movePage}]]
+		};
+	</script>
+    <script th:data-contextPath="${#httpServletRequest.getContextPath()}" th:src="@{~/javascript.wq?q=/bootloader}"></script>
+	<script type="text/javascript">
+		window.onload = init;
+		
+		function init() {
+			try {
+				gcm.CONTEXT_PATH = _context;
+				WebSquare.startApplication(WebSquareExternal.w2xPath);
+			} catch(e) {
+				alert(e.message);
+			}
+		}
+		
+	</script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:w2="http://www.inswave.com/websquare"
+	xmlns:xf="http://www.w3.org/2002/xforms">
+	<head meta_programId="BM009M02" meta_programName="정산현황" meta_programDesc="정산현황 화면" meta_author="Inswave Systems" meta_date="2021.02.25">
+		<w2:type>DEFAULT</w2:type>
+		<w2:buildDate />
+		<xf:model>
+			<xf:instance>
+				<data xmlns="" />
+			</xf:instance>
+			<w2:dataCollection>
+				<w2:dataList id="calList" baseNode="map" saveRemovedData="true" repeatNode="map">
+					<w2:columnInfo>
+						<w2:column id="A1" name="A1" dataType="text"></w2:column>
+						<w2:column id="A2" name="A2" dataType="text"></w2:column>
+						<w2:column id="A3" name="A3" dataType="text"></w2:column>
+						<w2:column id="A4" name="A4" dataType="text"></w2:column>
+						<w2:column id="A5" name="A5" dataType="text"></w2:column>
+						<w2:column id="A6" name="A6" dataType="text"></w2:column>
+						<w2:column id="A7" name="A7" dataType="text"></w2:column>
+					</w2:columnInfo>
+				</w2:dataList>
+			</w2:dataCollection>
+		</xf:model>
+		<script type="text/javascript" lazy="false"><![CDATA[ 
+	/**
+	 * 화면 초기화에 필요한 로직을 수행한다.
+	 */
+	scwin.onpageload = function() {
+	
+		var list = [
+			{
+				"A1": "RP2205273274", "A2": "1,412,000" , "A3": "47,908", "A4": "47,908", "A5": "1", "A6": "100 %", "A7": "중국파트"
+			},
+			{
+				"A1": "RP2205273720", "A2": "2,624,000" , "A3": "95,816", "A4": "95,816", "A5": "1", "A6": "100 %", "A7": "중국파트"
+			},
+			{
+				"A1": "RP2205283836", "A2": "1,312,000" , "A3": "95,816", "A4": "95,816", "A5": "1", "A6": "100 %", "A7": "중국파트"
+			},
+			{
+				"A1": "RP2205304392", "A2": "5,596,000" , "A3": "95,816", "A4": "95,816", "A5": "1", "A6": "100 %", "A7": "중국파트"
+			},
+			{
+				"A1": "RP2205304597", "A2": "1,412,000" , "A3": "95,816", "A4": "95,816", "A5": "1", "A6": "100 %", "A7": "중국파트"
+			}
+		];
+		
+		
+		calList.setJSON(list);
+	};
+	
+	/**
+	 * 화면 초기화 데이터가 모두 로딩되면 발생하는 이벤트
+	 */
+	scwin.ondataload = function() { 
+
+	};
+	]]></script>
+	</head>
+	<body ev:onpageload="scwin.onpageload">
+    	<xf:group style="" id="" class="sub_contents">
+    		<w2:wframe id="settlePopup" style="" src="../../cm/xml/contentHeader.xml" scope="true"></w2:wframe>
+    		<xf:group id="grp_memberBasic1" class="tbbox">
+    			<xf:group adaptive="layout" tagname="table" style="" id="table1" class="w2tb tb" adaptiveThreshold="800">
+    				<w2:attributes>
+    					<w2:summary></w2:summary>
+    				</w2:attributes>
+    				<xf:group tagname="caption"></xf:group>
+    				<xf:group tagname="colgroup">
+    					<xf:group tagname="col" style="width:13.90%;"></xf:group>
+    					<xf:group tagname="col" style="width:19.10%;"></xf:group>
+    					<xf:group tagname="col" style="width:13.90%;"></xf:group>
+    					<xf:group tagname="col" style="width:19.10%;"></xf:group>
+    					<xf:group tagname="col" style="width:19.10%;"></xf:group>
+    					<xf:group tagname="col" style="width:19.10%;"></xf:group>
+    				</xf:group>
+
+    				<xf:group tagname="tr" style="">
+    					<xf:group tagname="th" style="" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="총판매액" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" style="" class="w2tb_td">
+    						<w2:textbox class="req" id="reserveCode" label="26,988,000" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="th" style="" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="알선수수료" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" style="" class="w2tb_td">
+    						<w2:textbox class="req" id="" label="1,270,709	" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="th" style=";text-align:center;" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    							<w2:colspan>2</w2:colspan>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="수익율현황" ref="" style=";text-align:center;" userData2=""></w2:textbox>
+    					</xf:group>
+    				</xf:group>
+    				<xf:group tagname="tr" style="">
+    					<xf:group tagname="th" style="" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="총지출금" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" style="" class="w2tb_td">
+    						<w2:textbox class="req" id="" label="25,902,774" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="th" style="" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="항공수익" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" style="" class="w2tb_td">
+    						<w2:textbox class="req" id="" label="0" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="th" style="" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="1인당 평균수익" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" style="" class="w2tb_td">
+    						<w2:textbox class="req" id="" label="47,908" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    				</xf:group>
+    				<xf:group tagname="tr" style="">
+    					<xf:group tagname="th" style="" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="알선수익" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" style="" class="w2tb_td">
+    						<w2:textbox class="req" id="" label="1,397,780	" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="th" style="" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="기타수익" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" style="" class="w2tb_td">
+    						<w2:textbox class="req" id="" label="0" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="th" style="" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="행사수익율" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" style="" class="w2tb_td">
+    						<w2:textbox class="req" id="" label="5.18%" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    				</xf:group>
+    				<xf:group tagname="tr" style="">
+    					<xf:group tagname="th" style="" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="알선수수료" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" style="" class="w2tb_td">
+    						<w2:textbox class="req" id="" label="1,270,709" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="th" style="" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="기타경비" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" style="" class="w2tb_td">
+    						<w2:textbox class="req" id="" label="312,554" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="th" style="" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="총수익율" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" style="" class="w2tb_td">
+    						<w2:textbox class="req" id="" label="3.55%" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    				</xf:group>
+    				<xf:group tagname="tr" style="">
+    					<xf:group tagname="th" style="" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="부가가치세" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" style="" class="w2tb_td">
+    						<w2:textbox class="req" id="" label="127,071" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="th" style="" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="총수익" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" style="" class="w2tb_td">
+    						<w2:textbox class="req" id="" label="958,155	" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="th" style="" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="개별총수익" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" style="" class="w2tb_td">
+    						<w2:textbox class="req" id="" label="958,156" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    				</xf:group>
+    				<xf:group tagname="tr" style=""></xf:group>
+    				<xf:group tagname="tr" style=""></xf:group>
+    				<xf:group tagname="tr" style=""></xf:group>
+    				<xf:group tagname="tr" style=""></xf:group>
+    				<xf:group tagname="tr" style=""></xf:group>
+    				<xf:group tagname="tr" style=""></xf:group>
+    				<xf:group tagname="tr" style=""></xf:group>
+    			</xf:group>
+    		</xf:group>
+    		
+    		
+			<xf:group style="" id="" class="dfbox">
+				<w2:textbox label="예약별 수익내역서 (2019년 지점정산수익변경 적용)" style="" id="" class="df_tit fl"></w2:textbox>
+			</xf:group>
+			<xf:group adaptiveThreshold="" class="gvwbox" id="" style="">
+				<w2:gridView id="grd_memberBasic" style="height: 280px;" scrollByColumn="false" defaultCellHeight="20"
+					scrollByColumnAdaptive="false" dataList="data:calList" class="wq_gvw" rowStatusVisible="false" adaptive="" autoFit="allColumn"
+					autoFitMinWidth="600" ignoreCellClick="false" adaptiveThreshold="" sortEvent="onclick" sortable="true"
+					ev:oncellclick="" ev:oncelldblclick=""
+					ev:onrowindexchange="" readOnly="true" visibleRowNum="6">
+					<w2:caption style="" id="caption1" value="this is a grid caption."></w2:caption>
+					<w2:header style="" id="header1">
+						<w2:row style="" id="row1">
+							<w2:column removeBorderStyle="false" width="150" inputType="text" style="height:44px" id="column3" value="예약코드"
+								blockSelect="false" displayMode="label">
+							</w2:column>
+							<w2:column removeBorderStyle="false" width="100" inputType="text" style="height:44px" id="column5" value="판매금액"
+								blockSelect="false" displayMode="label">
+							</w2:column>
+							<w2:column removeBorderStyle="false" width="100" inputType="text" style="height:44px" id="column7" value="총수익"
+								blockSelect="false" displayMode="label">
+							</w2:column>
+							<w2:column removeBorderStyle="false" width="100" inputType="text" style="height:44px" id="column9" value="부서 수익"
+								blockSelect="false" displayMode="label">
+							</w2:column>
+							<w2:column removeBorderStyle="false" width="100" inputType="text" style="height:44px" id="column11" value="출발인원"
+								blockSelect="false" displayMode="label">
+							</w2:column>
+							<w2:column removeBorderStyle="false" width="100" inputType="text" style="height:44px" id="column13" value="수익배분"
+								blockSelect="false" displayMode="label">
+							</w2:column>
+							<w2:column removeBorderStyle="false" width="100" inputType="text" style="height:44px" id="column13" value="수익부서"
+								blockSelect="false" displayMode="label">
+							</w2:column>
+						</w2:row>
+					</w2:header>
+					<w2:gBody style="" id="gBody1">
+						<w2:row style="" id="row2">
+							<w2:column removeBorderStyle="false" width="100" inputType="text" style="height:38px" id="A1" value=""
+								blockSelect="false" displayMode="label">
+							</w2:column>
+							<w2:column removeBorderStyle="false" width="100" inputType="text" style="height:38px" id="A2" value=""
+								blockSelect="false" displayMode="label">
+							</w2:column>
+							<w2:column removeBorderStyle="false" width="100" inputType="text" style="height:38px" id="A3" value=""
+								blockSelect="false" displayMode="label">
+							</w2:column>
+							<w2:column removeBorderStyle="false" width="100" inputType="text" style="height:38px" id="A4" value=""
+								blockSelect="false" displayMode="label">
+							</w2:column>
+							<w2:column removeBorderStyle="false" width="100" inputType="text" style="height:38px" id="A5" value=""
+								blockSelect="false" displayMode="label">
+							</w2:column>
+							<w2:column removeBorderStyle="false" width="100" inputType="text" style="height:38px" id="A6" value=""
+								blockSelect="false" displayMode="label">
+							</w2:column>
+							<w2:column removeBorderStyle="false" width="100" inputType="text" style="height:38px" id="A7" value=""
+								blockSelect="false" displayMode="label">
+							</w2:column>
+						</w2:row>
+					</w2:gBody>
+				</w2:gridView>
+			</xf:group>    		
+    	</xf:group>
+	</body>
+</html>

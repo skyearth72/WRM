@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:w2="http://www.inswave.com/websquare"
+	xmlns:xf="http://www.w3.org/2002/xforms">
+	<head meta_programId="HM003M01" meta_programName="예약 상세정보" meta_programDesc="예약 상세정보 화면" meta_author="Inswave Systems" meta_date="2021.02.25">
+		<w2:type>DEFAULT</w2:type>
+		<w2:buildDate />
+		<xf:model>
+			<xf:instance>
+				<data xmlns="" />
+			</xf:instance>
+			<w2:dataCollection>
+				<w2:dataMap baseNode="map" id="dma_memberBasic" style="" firstSet="true">
+					<w2:keyInfo>
+						<w2:key id="rowStatus" name="상태" dataType="text"></w2:key>
+						<w2:key id="A1" name="예약코드" dataType="text"></w2:key>
+						<w2:key id="A2" name="판개가" dataType="text"></w2:key>
+						<w2:key id="A3" name="입금액" dataType="text"></w2:key>
+						<w2:key id="A4" name="미납액" dataType="text"></w2:key>
+						<w2:key id="A5" name="입금마감" dataType="text"></w2:key>
+						<w2:key id="A6" name="담당자" dataType="text"></w2:key>
+						<w2:key id="A7" name="접수일자" dataType="date"></w2:key>
+						<w2:key id="A8" name="수정일자" dataType="text"></w2:key>
+						<w2:key id="A9" name="예약확인정보" dataType="text"></w2:key>
+						<w2:key id="A10" name="상품명" dataType="text"></w2:key>
+						<w2:key id="A11" name="상품코드" dataType="date"></w2:key>
+						<w2:key id="A12" name="상품총액" dataType="date"></w2:key>
+						<w2:key id="A13" name="출발편명" dataType="text"></w2:key>
+						<w2:key id="A14" name="도착편명" dataType="text"></w2:key>
+						<w2:key id="A15" name="상품기획" dataType="text"></w2:key>
+						<w2:key id="A16" name="수정일" dataType="text"></w2:key>
+					</w2:keyInfo>
+					<w2:data use="false"></w2:data>
+				</w2:dataMap>
+			</w2:dataCollection>
+		</xf:model>
+		<script type="text/javascript" lazy="false"><![CDATA[ 
+		
+		
+	/**
+	 * 화면 초기화에 필요한 로직을 수행한다.
+	 */
+	scwin.onpageload = function() {
+		scwin.param = com.data.getParameter();
+		
+		
+		var layout = $p.top().scwin.getLayoutId();
+		
+		if(layout == "S") {
+			btn_back.show("inline");
+		}else{
+			btn_back.hide();
+		}
+		
+		
+		dma_memberBasic.setJSON(scwin.param.param);
+	};
+	
+	/**
+	 * 화면 초기화 데이터가 모두 로딩되면 발생하는 이벤트
+	 */
+	scwin.ondataload = function() { 
+
+	};
+	
+	scwin.btn_invoice_onclick = function(e){
+	
+		var data = { data : null, callbackFn : "scwin.btn_search_onclick" };
+		var width = 0;
+		var deviceWidth = parseFloat($("body").css("width"));
+		borderSize = 4
+		if (deviceWidth > 0 && width > deviceWidth) {
+			width = deviceWidth - borderSize; // 팝업 border 고려
+		}
+		
+		var val1 = com.num.parseInt(width) / 2;
+		
+		var leftVal = (document.body.offsetWidth / 2) - val1 + $(document).scrollLeft();
+	
+		var opt = { id : "popup_invoice_" + varCount++,
+					popupName : "INVOICE", 
+					width : 500, 
+					height : 480,
+					modal : true,
+					frameModal: "frame",
+					
+					title : true, 
+					menubar : true, 
+					useMaximize: true,
+					foldOnMinimized: true,
+					controls: { minimize: false, maximize: false, close: true },
+					useControl:true,					
+					//left : leftVal + "px"
+				  };
+		var popupUrl = "/ui/HM/HM003M11.xml";
+		
+		com.win.openPopup(popupUrl, opt, data);		
+	};
+	
+	scwin.btn_settle_onclick = function(e){
+	
+		var data = { data : null, callbackFn : "scwin.btn_search_onclick" };
+		var width = 0;
+		var deviceWidth = parseFloat($("body").css("width"));
+		borderSize = 4
+		if (deviceWidth > 0 && width > deviceWidth) {
+			width = deviceWidth - borderSize; // 팝업 border 고려
+		}
+		
+		var val1 = com.num.parseInt(width) / 2;
+		
+		var leftVal = (document.body.offsetWidth / 2) - val1 + $(document).scrollLeft();
+	
+		var opt = { id : "popup_" + varCount++,
+					popupName : "정산현황", 
+					width : 1000, 
+					height : 650,
+					modal : true,
+					frameModal: "frame",
+					
+					title : true, 
+					menubar : true, 
+					useMaximize: true,
+					foldOnMinimized: true,
+					controls: { minimize: false, maximize: false, close: true },
+					useControl:true,					
+					//left : leftVal + "px"
+				  };
+		var popupUrl = "/ui/HM/HM003M10.xml";
+		
+		com.win.openPopup(popupUrl, opt, data);		
+	};
+	
+	scwin.btn_back_onclick = function(){
+		history.back();
+	};
+	
+	scwin.btn_search_onclick = function(){
+	
+	};
+	]]></script>
+	</head>
+	<body ev:onpageload="scwin.onpageload">
+    	<xf:group style="" id="" class="sub_contents">
+    		<w2:wframe id="settlePopup" style="" src="../../cm/xml/contentHeader.xml" scope="true"></w2:wframe>
+    		<xf:group id="grp_memberBasic1" class="tbbox">
+    			<xf:group adaptive="layout" tagname="table" style="" id="table1" class="w2tb tb" adaptiveThreshold="800">
+    				<w2:attributes>
+    					<w2:summary></w2:summary>
+    				</w2:attributes>
+    				<xf:group tagname="caption"></xf:group>
+    				<xf:group tagname="colgroup">
+    					<xf:group tagname="col" style="width:13.90%;"></xf:group>
+    					<xf:group tagname="col" style="width:19.10%;"></xf:group>
+    					<xf:group tagname="col" style="width:13.90%;"></xf:group>
+    					<xf:group tagname="col" style="width:19.10%;"></xf:group>
+    				</xf:group>
+    				<xf:group tagname="tr" style="">
+    					<xf:group tagname="th" style=";text-align:center;background-color:#0000FF;" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						<w2:colspan>2</w2:colspan><w2:rowspan>1</w2:rowspan></w2:attributes>
+    						<w2:textbox class="" id="" label="예약정보" ref="" style=";color:#FFFFFF;" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="th" style=";text-align:center;background-color:#808080;" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						<w2:colspan>2</w2:colspan><w2:rowspan>1</w2:rowspan></w2:attributes>
+    						<w2:textbox class="" id="" label="상품정보" ref="" style=";color:#FFFFFF;" userData2=""></w2:textbox>
+    					</xf:group>
+    				</xf:group>
+    				<xf:group tagname="tr" style="">
+    					<xf:group tagname="th" style="" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="예약코드" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" style="" class="w2tb_td">
+    						<w2:textbox class="req" id="reserveCode" label="" ref="data:dma_memberBasic.A1" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="th" style="" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="상품명" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" style="" class="w2tb_td">
+    						<w2:textbox class="req" id="" label="" ref="data:dma_memberBasic.A10" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    				</xf:group>
+    				<xf:group tagname="tr" style="">
+    					<xf:group tagname="th" style="" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="판매가" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" style="" class="w2tb_td">
+    						<w2:textbox class="req" id="" label="" ref="data:dma_memberBasic.A2" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="th" style="" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="행사코드" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" style="" class="w2tb_td">
+    						<w2:textbox class="req" id="" label="" ref="data:dma_memberBasic.A11" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    				</xf:group>
+    				<xf:group tagname="tr" style="">
+    					<xf:group tagname="th" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="입금액" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" class="w2tb_td">
+    						<w2:attributes></w2:attributes>
+    						<w2:textbox class="req" id="" label="" ref="data:dma_memberBasic.A3" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="th" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="상품총액" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" class="w2tb_td">
+    						<w2:attributes></w2:attributes>
+    						<w2:textbox class="req" id="" label="" ref="data:dma_memberBasic.A12" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    				</xf:group>
+    				<xf:group tagname="tr" style="">
+    					<xf:group tagname="th" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="미납액" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" class="w2tb_td">
+    						<w2:attributes></w2:attributes>
+    						<w2:textbox class="req" id="" label="" ref="data:dma_memberBasic.A4" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="th" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="출발편명" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" class="w2tb_td">
+    						<w2:attributes></w2:attributes>
+    						<xf:group adaptiveThreshold="" class="ipt_search" id="" style=""></xf:group>
+    						<w2:textbox class="req" id="" label="" ref="data:dma_memberBasic.A13" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    				</xf:group>
+    				<xf:group tagname="tr" style="">
+    					<xf:group tagname="th" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="입금마감" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" class="w2tb_td">
+    						<w2:attributes></w2:attributes>
+    						<w2:textbox class="req" id="" label="" ref="data:dma_memberBasic.A5" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="th" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="도착편명" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" class="w2tb_td">
+    						<w2:attributes></w2:attributes>
+    						<w2:textbox class="req" id="" label="" ref="data:dma_memberBasic.A14" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    				</xf:group>
+    				<xf:group tagname="tr" style="">
+    					<xf:group tagname="th" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="담당자" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" class="w2tb_td">
+    						<w2:attributes></w2:attributes>
+    						<w2:textbox class="req" id="" label="" ref="data:dma_memberBasic.A6" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="th" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="상품기획" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" class="w2tb_td">
+    						<w2:attributes></w2:attributes>
+    						<w2:textbox class="req" id="" label="" ref="data:dma_memberBasic.A15" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    				</xf:group>
+    				<xf:group tagname="tr" style="">
+    					<xf:group tagname="th" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="접수일자" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" class="w2tb_td">
+    						<w2:attributes></w2:attributes>
+    						<w2:textbox class="req" id="" label="" ref="data:dma_memberBasic.A7" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="th" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="수정일" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" class="w2tb_td">
+    						<w2:attributes></w2:attributes>
+    						<w2:textbox class="req" id="" label="" ref="data:dma_memberBasic.A16" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    				</xf:group>
+    				<xf:group tagname="tr" style="">
+    					<xf:group tagname="th" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="수정일자" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" class="w2tb_td">
+    						<w2:attributes></w2:attributes>
+    						<w2:textbox class="req" id="" label="" ref="data:dma_memberBasic.A8" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="th" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    					</xf:group>
+    					<xf:group tagname="td" class="w2tb_td">
+    						<w2:attributes></w2:attributes>
+    					</xf:group>
+    				</xf:group>
+    				<xf:group tagname="tr" style="">
+    					<xf:group tagname="th" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    						<w2:textbox class="" id="" label="예약확인정보" ref="" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="td" class="w2tb_td">
+    						<w2:attributes></w2:attributes>
+    						<w2:textbox class="req" id="" label="" ref="data:dma_memberBasic.A9" style="" userData2=""></w2:textbox>
+    					</xf:group>
+    					<xf:group tagname="th" class="w2tb_th">
+    						<w2:attributes>
+    							<w2:scope>row</w2:scope>
+    						</w2:attributes>
+    					</xf:group>
+    					<xf:group tagname="td" class="w2tb_td">
+    						<w2:attributes></w2:attributes>
+    					</xf:group>
+    				</xf:group>    				
+    			</xf:group>
+    			
+    			
+				<xf:group style="height:300px" id="" class="dfbox">
+				
+					<xf:trigger type="button" style="" id="btn_back" class="btn_cm " ev:onclick="scwin.btn_back_onclick">
+						<xf:label><![CDATA[뒤로가기]]></xf:label>
+					</xf:trigger>				
+				
+					<xf:trigger type="button" style="" id="btn_addMsg" class="btn_cm " ev:onclick="scwin.btn_settle_onclick">
+						<xf:label><![CDATA[정산현황]]></xf:label>
+					</xf:trigger>
+					
+					<xf:trigger type="button" style="" id="btn_invoice" class="btn_cm " ev:onclick="scwin.btn_invoice_onclick">
+						<xf:label><![CDATA[INVOICE]]></xf:label>
+					</xf:trigger>
+				</xf:group>
+    		</xf:group>
+    	</xf:group>
+	</body>
+</html>
