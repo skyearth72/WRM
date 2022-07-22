@@ -55,7 +55,7 @@
 				</w2:dataList>
 			</w2:dataCollection>
 			<w2:workflowCollection></w2:workflowCollection>
-			<xf:submission id="sbm_advancedExcel" ref="" target="data:json,dlt_advancedExcel" action="/ui/SP/JsonData/advancedExcel.json" method="get" mediatype="application/json" encoding="UTF-8"
+			<xf:submission id="sbm_advancedExcel" ref="" target="data:json,dlt_advancedExcel" action="/static/ui/SP/JsonData/advancedExcel.json" method="get" mediatype="application/json" encoding="UTF-8"
 				instance="" replace="" errorHandler="" customHandler="" mode="asynchronous" processMsg="" ev:submit="" ev:submitdone="scwin.sbm_advancedExcel_submitdone" ev:submiterror="" abortTrigger="">
 			</xf:submission>
 		</xf:model>

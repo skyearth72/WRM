@@ -52,12 +52,14 @@ public class HiKariEventPoolDataSourceConfiguration {
   public SqlSessionFactory sqlSessionFactoryHikariEvent(
           @Qualifier("dataSourceHikariEventDb") DataSource dataSource
   )throws Exception{
-	  
+
+
+
     SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
     sqlSessionFactory.setDataSource(dataSource);
 
 	sqlSessionFactory.setConfigLocation(new DefaultResourceLoader().getResource("classpath:/sqlmap/mybatis-config.xml"));
-	sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:com/inswave/**/dao/**/*.xml"));
+	sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:/sqlmap/context/**/*.xml"));
 
     return sqlSessionFactory.getObject();
   }

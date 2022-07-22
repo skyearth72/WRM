@@ -1,15 +1,20 @@
+# https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html
 
 server:
   address: 127.0.0.1
   port: 8080
   servlet:
     context-path: /
-#    jsp:
-#      init-parameters:
-#        development: true
-        
-        
+  tomcat:
+    resource:
+      allow-caching: false
+
 spring:
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: false
   mvc:
     static-path-pattern: /static/**
   web:
@@ -24,10 +29,7 @@ spring:
     cache: false
     # templates 디렉토리에 파일이 있는지 없는지 체크, 없으면 에러를 발생시킨다.
     check-template-location: true 
-#  mvc:
-#    view:
-#      prefix: /WEB-INF/jsp/
-#      suffix: .jsp
+
     # https://github.com/brettwooldridge/HikariCP
   datasource-hikari-event:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy

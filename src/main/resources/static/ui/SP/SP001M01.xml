@@ -249,12 +249,14 @@
 	scwin.displayImage = function(data, formattedData, rowIndex, colIndex){
 		var cellData = dlt_sample.getCellData(rowIndex, "FILE_PATH");
 		if (cellData != "") {
-			return "<img src='cm/images/ico_link.png' style='cursor:pointer;'/>";
+			return "<img src='/cm/images/ico_link.png' style='cursor:pointer;'/>";
 		} else {
 			return "";
 		}
 	};
-	
+
+
+
 	scwin.grd_sample_oncellclick = function(row,col) {
 		if (col == 3) {
 			var filePath = dlt_sample.getCellData(row, "FILE_PATH");
