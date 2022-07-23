@@ -3,23 +3,27 @@ package com.inswave.wrm.sample.service.impl;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.inswave.wrm.sample.dao.EduDao;
 import com.inswave.wrm.sample.service.EduService;
-import com.inswave.wrm.util.WqLargeResultHandler;
+
+import lombok.RequiredArgsConstructor;
 
 @Service("eduService")
+@RequiredArgsConstructor
 public class EduServiceImpl implements EduService {
-	@Resource(name = "eduDao")
-	private EduDao eduDao;
+	private final EduDao eduDao;
 
+	
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public int insertSpMember(Map param) throws Exception {
 		return eduDao.insertSpMember(param);
 	}
 
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public int updateSpMember(Map param) throws Exception {
 		return eduDao.updateSpMember(param);
 	}

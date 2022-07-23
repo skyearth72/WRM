@@ -4,18 +4,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.inswave.wrm.common.dao.MessageDao;
 import com.inswave.wrm.common.service.MessageService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class MessageServiceImpl implements MessageService {
 
-	@Resource(name = "messageDao")
-	private MessageDao messageDao;
+	private final MessageDao messageDao;
 	
 	@Override
 	public List<Map> selectMessageList(Map param) {
@@ -23,6 +25,7 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map saveMessage(List param) {
 		int iCnt = 0;
 		int uCnt = 0;

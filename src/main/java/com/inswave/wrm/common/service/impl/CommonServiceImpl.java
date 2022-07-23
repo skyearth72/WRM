@@ -4,18 +4,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.inswave.wrm.common.dao.CommonDao;
 import com.inswave.wrm.common.service.CommonService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class CommonServiceImpl implements CommonService {
 
-	@Resource(name = "commonDao")
-	private CommonDao commonDao;
+	private final CommonDao commonDao;
 
 	/**
 	 * 헤더메뉴, 사이드메뉴 조회 (로그인 사용자에게 권한이 있는 메뉴만 조회함)
@@ -93,6 +95,7 @@ public class CommonServiceImpl implements CommonService {
 	 * @param param Client 전달한 데이터 맵 객체
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map saveCodeGrpList(List param) {
 		int iCnt = 0;
 		int uCnt = 0;
@@ -124,6 +127,7 @@ public class CommonServiceImpl implements CommonService {
 	 * @param param Client 전달한 데이터 맵 객체
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map saveCodeList(List param) {
 
 		int iCnt = 0;
@@ -159,6 +163,7 @@ public class CommonServiceImpl implements CommonService {
 	 * @returns <int> 0일 경우 실패
 	 * @author Inswave Systems
 	 */
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public int updateBmMainSetting(Map param) {
 		int rs = 0;
 		rs = commonDao.updateBmMainSetting(param);
@@ -176,6 +181,7 @@ public class CommonServiceImpl implements CommonService {
 	 * @returns <int> 0일 경우 실패
 	 * @author Inswave Systems
 	 */
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public int insertBmMainSetting(Map param) {
 		return commonDao.insertBmMainSetting(param);
 	}
@@ -212,6 +218,7 @@ public class CommonServiceImpl implements CommonService {
 	 * @param <MAP> #{EMP_CD}, #{MENU_CD}
 	 * @author Inswave Systems
 	 */
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public int insertBmFavorite(Map param) {
 		return commonDao.insertBmFavorite(param);
 	}
@@ -223,6 +230,7 @@ public class CommonServiceImpl implements CommonService {
 	 * @param <MAP> #{EMP_CD}, #{MENU_CD}
 	 * @author Inswave Systems
 	 */
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public int deleteBmFavorite(Map param) {
 		return commonDao.insertBmFavorite(param);
 	}
@@ -234,6 +242,7 @@ public class CommonServiceImpl implements CommonService {
 	 * @param <MAP> #{EMP_CD}, #{MENU_CD}, STATUS:[I|D|U]
 	 * @author Inswave Systems
 	 */
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public int updateBmFavorite(Map param) {
 		int rs = 0;
 		String status = (String) param.get("STATUS");
@@ -256,6 +265,7 @@ public class CommonServiceImpl implements CommonService {
 	 * @param param Client 전달한 데이터 리스트 객체
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map saveCodeGrpListAll(List paramCodeGrp, List paramCode) {
 
 		int iCnt_grp = 0; // 등록한 그룹코드 건수
@@ -315,6 +325,7 @@ public class CommonServiceImpl implements CommonService {
 	}
 
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map updateShortcutList(List updateList) {
 		int iCnt = 0;
 		int uCnt = 0;

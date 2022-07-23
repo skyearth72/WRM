@@ -3,7 +3,6 @@ package com.inswave.wrm.common.controller;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,11 +11,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.inswave.wrm.common.service.ProgramService;
 import com.inswave.wrm.util.Result;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
+@RequiredArgsConstructor
 public class ProgramController {
 
-	@Autowired
-	private ProgramService programService;
+	private final ProgramService programService;
 
 	/**
 	 * searchProgram - 조회조건에 따른 프로그램관리 리스트를 조회한다.

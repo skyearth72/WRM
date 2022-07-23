@@ -12,29 +12,29 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * Event DB 의 Transaction Config
+ * DB 의 Transaction Config
  * @author Shin Seoung Ho
  *
  */
 @Configuration
 @EnableTransactionManagement
-@DependsOn(value = {"dataSourceHikariEventDb"})
-public class EventDbTransactionConfig {
+@DependsOn(value = {"dataSource"})
+public class DbTransactionConfig {
 
 	/**
 	 * Event 용의 계정으로 접속한 Datasource
 	 */
 	@Autowired
-	@Qualifier("dataSourceHikariEventDb")
-	private DataSource dataSourceOfEventDb;
+	@Qualifier("dataSource")
+	private DataSource dataSource;
 	
 
 	/**
 	 * Event 용의 계정으로 접속한 Datasource 에 대한 Transaction Manager
 	 * @return
 	 */
-	@Bean(name={"transactionManagerOfEventDb"})
+	@Bean(name={"dbTransactionManager"})
 	public PlatformTransactionManager transactionManagerOfEventDb() {
-		return new DataSourceTransactionManager(dataSourceOfEventDb);
+		return new DataSourceTransactionManager(dataSource);
 	}
 }

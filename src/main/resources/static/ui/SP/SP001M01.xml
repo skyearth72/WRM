@@ -249,7 +249,7 @@
 	scwin.displayImage = function(data, formattedData, rowIndex, colIndex){
 		var cellData = dlt_sample.getCellData(rowIndex, "FILE_PATH");
 		if (cellData != "") {
-			return "<img src='/cm/images/ico_link.png' style='cursor:pointer;'/>";
+			return "<img src='/static/cm/images/ico_link.png' style='cursor:pointer;'/>";
 		} else {
 			return "";
 		}
@@ -389,7 +389,7 @@
 							</w2:column>
 							<w2:column blockSelect="false" customFormatter="scwin.displayImage" displayMode="label" fixColumnWidth="true"
 								id="open" imageHeight="20" imageWidth="20" readOnly="true" removeBorderStyle="false" style="height:25px;" width="40"
-								imageSrc="/cm/images/ico_link.png">
+								imageSrc="/static/cm/images/ico_link.png">
 							</w2:column>
 							<w2:column blockSelect="false" displayMode="label" falseValue="N" fixColumnWidth="true" id="IS_USE"
 								inputType="checkbox" removeBorderStyle="false" style="height:25px;" trueValue="Y" valueType="other" width="65" checkboxLabel="선택">

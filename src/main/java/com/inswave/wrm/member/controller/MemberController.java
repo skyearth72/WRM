@@ -7,12 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,13 +21,15 @@ import com.inswave.wrm.member.service.MemberService;
 import com.inswave.wrm.util.FileUtil;
 import com.inswave.wrm.util.Result;
 
+import lombok.RequiredArgsConstructor;
 import websquare.WebSquareConfig;
 
 @Controller
+@RequiredArgsConstructor
 public class MemberController {
-	
-	@Autowired
-	private MemberService service;
+
+
+	private final MemberService service;
 
 	/**
 	 * searchMemberBasicOrganization - 조회조건에 따른 인사기본관리 리스트를 조회한다.

@@ -4,18 +4,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.inswave.wrm.common.dao.ProgramDao;
 import com.inswave.wrm.common.service.ProgramService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class ProgramServiceImpl implements ProgramService {
 
-	@Resource(name = "programDao")
-	private ProgramDao programDao;
+	private final ProgramDao programDao;
 
 	/**
 	 * 메뉴관리 조회
@@ -53,6 +55,7 @@ public class ProgramServiceImpl implements ProgramService {
 	 * @param param Client 전달한 데이터 리스트 객체
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map saveProgram(List param) {
 		int iCnt = 0;
 		int uCnt = 0;
@@ -85,6 +88,7 @@ public class ProgramServiceImpl implements ProgramService {
 	 * @param param Client 전달한 데이터 리스트 객체
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map saveProgramAuthority(List param) {
 		int iCnt = 0;
 		int uCnt = 0;
@@ -115,6 +119,7 @@ public class ProgramServiceImpl implements ProgramService {
 	 * @param param Client 전달한 데이터 리스트 객체
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map saveProgramAll(List paramProgram, List paramProgramAcess) {
 
 		int iCnt_menu = 0; // 등록한 메뉴 건수

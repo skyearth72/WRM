@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,14 +13,15 @@ import com.inswave.wrm.common.service.CommonService;
 import com.inswave.wrm.util.Result;
 import com.inswave.wrm.util.UserInfo;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
+@RequiredArgsConstructor
 public class CommonController {
 
-	@Autowired
-	private CommonService commonService;
+	private final CommonService commonService;
 
-	@Autowired
-	private UserInfo user;
+	private final UserInfo user;
 
 	/**
 	 * selectCommonSearchItem - 공통코드 아이템 리스트를 조회한다.

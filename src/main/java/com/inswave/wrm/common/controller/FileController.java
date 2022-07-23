@@ -1,15 +1,8 @@
 package com.inswave.wrm.common.controller;
 
-import java.awt.PageAttributes.MediaType;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +10,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,17 +18,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.inswave.wrm.common.service.FileService;
-import com.inswave.wrm.common.service.MenuService;
 import com.inswave.wrm.util.FileUtil;
 import com.inswave.wrm.util.Result;
 
+import lombok.RequiredArgsConstructor;
 import websquare.WebSquareConfig;
 
 @Controller
+@RequiredArgsConstructor
 public class FileController {
 
-	@Autowired
-	private FileService fileService;
+	private final FileService fileService;
 
 	// 파일그룹 조회
 	@RequestMapping("/file/selectFileGrp")

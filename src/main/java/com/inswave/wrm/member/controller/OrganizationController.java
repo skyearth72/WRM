@@ -3,7 +3,6 @@ package com.inswave.wrm.member.controller;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,11 +11,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.inswave.wrm.member.service.OrganizationService;
 import com.inswave.wrm.util.Result;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
+@RequiredArgsConstructor
 public class OrganizationController {
 
-	@Autowired
-	private OrganizationService service;
+	private final OrganizationService service;
 
 	/**
 	 * selectOrganizaionSearchItem - 조직관리 아이템 리스트를 조회한다.

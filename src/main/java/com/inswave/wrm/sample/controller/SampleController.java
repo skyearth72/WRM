@@ -3,7 +3,6 @@ package com.inswave.wrm.sample.controller;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.inswave.wrm.sample.beans.DataBean;
-import com.inswave.wrm.sample.beans.RsMsgBean;
 import com.inswave.wrm.sample.beans.ParamBean;
+import com.inswave.wrm.sample.beans.RsMsgBean;
 import com.inswave.wrm.sample.beans.TempBean;
 import com.inswave.wrm.sample.beans.UserBean;
 import com.inswave.wrm.sample.service.SampleService;
@@ -20,17 +19,17 @@ import com.inswave.wrm.sample.service.ZipCodeService;
 import com.inswave.wrm.util.Result;
 import com.inswave.wrm.util.UserInfo;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
+@RequiredArgsConstructor
 public class SampleController {
 
-	@Autowired
-	private ZipCodeService zipCodeService;
+	private final ZipCodeService zipCodeService;
 
-	@Autowired
-	private SampleService sampleService;
+	private final SampleService sampleService;
 
-	@Autowired
-	private UserInfo userInfo;
+	private final UserInfo userInfo;
 
 	/**
 	 * 조회 조건에 따른 샘플 목록을 조회한다.

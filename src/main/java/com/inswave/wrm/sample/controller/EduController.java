@@ -3,23 +3,22 @@ package com.inswave.wrm.sample.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.inswave.wrm.sample.service.EduService;
 import com.inswave.wrm.util.Result;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
+@RequiredArgsConstructor
 public class EduController {
 
-	@Resource(name = "eduService")
-	private EduService eduService;
+	private final EduService eduService;
 
 	@RequestMapping(value = "/edu/e001Init", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> getMemberInfo(@RequestBody Map<String, Object> param) throws Exception {

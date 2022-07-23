@@ -4,18 +4,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.inswave.wrm.member.dao.OrganizationDao;
 import com.inswave.wrm.member.service.OrganizationService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class OrganizationServiceImpl implements OrganizationService {
 
-	@Resource(name = "organizationDao")
-	private OrganizationDao organizationDao;
+	private final OrganizationDao organizationDao;
 
 	/**
 	 * 조직기본관리(기본정보)
@@ -64,6 +66,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 	 * @param param Client 전달한 데이터 맵 객체
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map saveOrganizaionBasicList(List param) {
 		int iCnt = 0;
 		int uCnt = 0;

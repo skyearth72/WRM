@@ -1,32 +1,23 @@
 package com.inswave.wrm.common.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.inswave.wrm.common.service.LoginService;
 import com.inswave.wrm.common.service.MenuService;
 import com.inswave.wrm.util.Result;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
+@RequiredArgsConstructor
 public class MenuController {
 
-	@Autowired
-	private MenuService menuService;
-	
-	@Autowired
-	private LoginService loginService;
+	private final MenuService menuService;
 
 	/**
 	 * searchMenu - 조회조건에 따른 메뉴관리 리스트를 조회한다.

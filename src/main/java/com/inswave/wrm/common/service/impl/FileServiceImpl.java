@@ -4,17 +4,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.inswave.wrm.common.dao.FileDao;
 import com.inswave.wrm.common.service.FileService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class FileServiceImpl implements FileService {
-	@Resource(name = "fileDao")
-	private FileDao fileDao;
+	private final FileDao fileDao;
 	
 	@Override
 	public List<Map> selectFileGrp(Map param) {
@@ -22,6 +24,7 @@ public class FileServiceImpl implements FileService {
 	}
 	
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map saveFileGrp(Map param) {
 		int cnt = 0;
 
@@ -56,6 +59,7 @@ public class FileServiceImpl implements FileService {
 	}
 	
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map saveFile(List param) {
 		int iCnt = 0;
 		int dCnt = 0;

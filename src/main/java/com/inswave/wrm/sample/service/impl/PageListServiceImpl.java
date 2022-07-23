@@ -4,18 +4,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.inswave.wrm.sample.dao.PageListDao;
 import com.inswave.wrm.sample.service.PageListService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class PageListServiceImpl implements PageListService{
 	
-	@Resource(name="pageListDao")
-	private PageListDao pageListDao;
+	private final PageListDao pageListDao;
 	
 	/**
 	 *  조회
@@ -39,6 +41,7 @@ public class PageListServiceImpl implements PageListService{
 	 * @param param Client 전달한 데이터 맵 객체
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map update(Map param) {
 		
 		int iCnt = 0;

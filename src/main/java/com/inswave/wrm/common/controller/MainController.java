@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,17 +18,17 @@ import com.inswave.wrm.common.service.MainService;
 import com.inswave.wrm.util.Result;
 import com.inswave.wrm.util.UserInfo;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
+@RequiredArgsConstructor
 public class MainController {
 
-	@Autowired
-	private UserInfo user;
+	private final UserInfo user;
 
-	@Autowired
-	private CommonService commonService;
+	private final CommonService commonService;
 
-	@Autowired
-	private MainService mainService;
+	private final MainService mainService;
 
 	@Value("${main.setting.code.DB}")
 	private String dbCode;

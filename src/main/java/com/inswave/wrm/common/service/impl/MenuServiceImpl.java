@@ -4,18 +4,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.inswave.wrm.common.dao.MenuDao;
 import com.inswave.wrm.common.service.MenuService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class MenuServiceImpl implements MenuService {
 
-	@Resource(name = "menuDao")
-	private MenuDao menuDao;
+	private final MenuDao menuDao;
 
 	/**
 	 * 메뉴관리 조회
@@ -33,6 +35,7 @@ public class MenuServiceImpl implements MenuService {
 	 * @param param Client 전달한 데이터 리스트 객체
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map saveMenu(List param) {
 		int iCnt = 0;
 		int uCnt = 0;

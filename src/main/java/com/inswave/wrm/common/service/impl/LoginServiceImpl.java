@@ -3,26 +3,24 @@ package com.inswave.wrm.common.service.impl;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.inswave.wrm.common.dao.LoginDao;
 import com.inswave.wrm.common.service.LoginService;
-import com.inswave.wrm.member.dao.MemberDao;
 import com.inswave.wrm.util.PageURIUtil;
 import com.inswave.wrm.util.UserInfo;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class LoginServiceImpl implements LoginService {
 
-	@Resource(name = "loginDao")
-	private LoginDao loginDao;
-
-	@Resource(name = "memberDao")
-	private MemberDao memberDao;
+	private final LoginDao loginDao;
 	
 	@Value("${system.admin.id}")
 	private String adminId;
@@ -80,6 +78,7 @@ public class LoginServiceImpl implements LoginService {
 	 * 사용자의 비밀번호를 업데이트한다.
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public int updatePassword(Map param) {
 		return loginDao.updatePassword(param);
 	}

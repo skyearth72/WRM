@@ -15,6 +15,16 @@ plugins {
     id 'eclipse'
 }
 
+eclipse {
+   classpath { defaultOutputDir = file('build') }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
 repositories {
 	//Maven Local Repository 관련 참고 URL : https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:local-repos
 
@@ -65,6 +75,10 @@ dependencies {
 
     //Logback
     implementation 'ch.qos.logback:logback-classic:1.2.11'
+    
+    //Lombok (이클립스 플러그인설정 : https://poetic-code.tistory.com/104)
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'    
 
 
     implementation 'commons-fileupload:commons-fileupload:1.4'
@@ -73,12 +87,16 @@ dependencies {
 
     //Websquare5
     implementation 'websquare:websquare:5.0_4.4547B.20211124.201933_1.5'
-    runtimeOnly 'xerces:xercesImpl:2.12.2'
+    runtimeOnly('xerces:xercesImpl:2.12.2'){
+    	exclude group: 'xml-apis', module: 'xml-apis'
+    }
 
     // Microsoft 엑셀문서 작성(apache POI) 관련
     runtimeOnly 'org.apache.poi:ooxml-schemas:1.4'
     runtimeOnly 'org.apache.poi:poi:3.10-FINAL'
-    runtimeOnly 'org.apache.poi:poi-ooxml:3.10-FINAL'
+    runtimeOnly ('org.apache.poi:poi-ooxml:3.10-FINAL'){
+    	exclude group: 'xml-apis', module: 'xml-apis'
+    }
     runtimeOnly 'org.apache.poi:poi-excelant:3.10-FINAL'
     runtimeOnly 'org.apache.poi:poi-scratchpad:3.10-FINAL'
     runtimeOnly 'org.apache.poi:poi-ooxml-schemas:3.10-FINAL'

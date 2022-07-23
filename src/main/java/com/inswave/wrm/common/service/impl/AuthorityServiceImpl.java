@@ -4,18 +4,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.inswave.wrm.common.dao.AuthorityDao;
 import com.inswave.wrm.common.service.AuthorityService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class AuthorityServiceImpl implements AuthorityService {
 
-	@Resource(name = "authorityDao")
-	private AuthorityDao authorityDao;
+	private final AuthorityDao authorityDao;
 
 	/**
 	 * 권한관리 조회
@@ -63,6 +65,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 	 * @param param Client 전달한 데이터 맵 객체
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map saveAuthority(List param) {
 		int iCnt = 0;
 		int uCnt = 0;
@@ -94,6 +97,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 	 * @param param Client 전달한 데이터 맵 객체
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map saveAuthorityMember(List param) {
 		int iCnt = 0;
 		int uCnt = 0;
@@ -123,6 +127,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 	 * @param param Client 전달한 데이터 리스트 객체
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map saveAuthorityAll(List paramAuth, List paramAuthMember) {
 
 		int iCnt_grp = 0; // 등록한 그룹코드 건수

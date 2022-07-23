@@ -19,17 +19,17 @@ import com.inswave.wrm.common.service.LoginService;
 import com.inswave.wrm.util.Result;
 import com.inswave.wrm.util.UserInfo;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
+@RequiredArgsConstructor
 public class LoginController {
 
-	@Autowired
-	private LoginService loginService;
+	private final LoginService loginService;
 
-	@Autowired
-	private CommonService commonService;
+	private final CommonService commonService;
 
-	@Autowired
-	private UserInfo user;
+	private final UserInfo user;
 
 	/**
 	 * logout session 삭제 성공 : redirect로 기본 페이지 이동. session 삭제 오류 : 기존 화면으로 오류 메세지 전송

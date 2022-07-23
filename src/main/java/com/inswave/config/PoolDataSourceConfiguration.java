@@ -20,11 +20,11 @@ import javax.sql.DataSource;
   {
     @MapperScan(
       basePackages = {"com.inswave.**.dao"},
-      sqlSessionFactoryRef = "sqlSessionFactoryHikariEvent"
+      sqlSessionFactoryRef = "sqlSessionFactory"
     )
   }
 )
-public class HiKariEventPoolDataSourceConfiguration {
+public class PoolDataSourceConfiguration {
 
 
 
@@ -33,9 +33,9 @@ public class HiKariEventPoolDataSourceConfiguration {
    *
    * @return the data source
    */
-  @ConfigurationProperties(prefix = "spring.datasource-hikari-event")
-  @Bean(name = "dataSourceHikariEventDb")
-  public DataSource dataSourceHikariEventDb(){
+  @ConfigurationProperties(prefix = "spring.datasource-hikari")
+  @Bean(name = "dataSource")
+  public DataSource dataSource(){
     return DataSourceBuilder.create()
             .type(HikariDataSource.class)
             .build();
@@ -48,9 +48,9 @@ public class HiKariEventPoolDataSourceConfiguration {
    * @return the sql session factory
    * @throws Exception the exception
    */
-  @Bean("sqlSessionFactoryHikariEvent")
-  public SqlSessionFactory sqlSessionFactoryHikariEvent(
-          @Qualifier("dataSourceHikariEventDb") DataSource dataSource
+  @Bean("sqlSessionFactory")
+  public SqlSessionFactory sqlSessionFactory(
+          @Qualifier("dataSource") DataSource dataSource
   )throws Exception{
 
 

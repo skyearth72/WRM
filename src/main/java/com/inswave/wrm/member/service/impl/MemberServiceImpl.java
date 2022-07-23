@@ -4,23 +4,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.inswave.wrm.member.dao.MemberDao;
 import com.inswave.wrm.member.service.MemberService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
-	@Resource(name = "memberDao")
-	private MemberDao memberDao;
+	private final MemberDao memberDao;
 	
 	@Autowired
 	private PlatformTransactionManager transactionManager;
@@ -86,6 +88,7 @@ public class MemberServiceImpl implements MemberService {
 	 * @param param Client 전달한 데이터 맵 객체
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map saveMemberBasicList(List param) {
 
 		int iCnt = 0;
@@ -122,6 +125,7 @@ public class MemberServiceImpl implements MemberService {
 	 * @return
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map saveMemberBasic(Map param) {
 		
 		int uCnt = 0;
@@ -141,6 +145,7 @@ public class MemberServiceImpl implements MemberService {
 	 * @return
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map saveMemberFamily(List param) {
 		
 		int iCnt = 0;
@@ -176,6 +181,7 @@ public class MemberServiceImpl implements MemberService {
 	 * @return
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map saveMemberProject(List param) {
 		
 		int iCnt = 0;

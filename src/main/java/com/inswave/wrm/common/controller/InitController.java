@@ -1,41 +1,27 @@
 package com.inswave.wrm.common.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
-import java.util.Iterator;
-import java.util.Properties;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.inswave.wrm.common.service.LoginService;
 import com.inswave.wrm.common.service.MenuService;
 import com.inswave.wrm.member.service.MemberService;
-import com.inswave.wrm.util.PageURIUtil;
-import com.inswave.wrm.util.Result;
-import com.inswave.wrm.util.UserInfo;
+
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 public class InitController {
 	
-	@Autowired
-	private MemberService service;
+	private final MemberService service;
 	
-	@Autowired
-	private LoginService loginService;
+	private final LoginService loginService;
 	
-	@Autowired
-	private MenuService menuService;
+	private final MenuService menuService;
 
 	/**
 	 * 기본 Root Url 처리

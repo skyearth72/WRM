@@ -2,8 +2,6 @@ package com.inswave.wrm.reserve.controller;
 
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,11 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.inswave.wrm.reserve.service.ReserveService;
 import com.inswave.wrm.util.Result;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
+@RequiredArgsConstructor
 public class ReserveController {
 	
-	@Resource(name = "reserveService")
-	private ReserveService service;
+	private final ReserveService service;
 
 
 	/**

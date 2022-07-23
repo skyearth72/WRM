@@ -4,18 +4,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.inswave.wrm.common.dao.ReleaseInfoDao;
 import com.inswave.wrm.common.service.MainService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service("mainService")
+@RequiredArgsConstructor
 public class MainServiceImpl implements MainService {
 
-	@Resource(name = "ReleaseInfoDao")
-	private ReleaseInfoDao releaseDao;
+	@Qualifier("ReleaseInfoDao")
+	private final ReleaseInfoDao releaseDao;
 
 	/**
 	 * selectType=="S" : 요약본
@@ -37,6 +41,7 @@ public class MainServiceImpl implements MainService {
 	 * @param param Client 전달한 데이터 맵 객체
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map saveRelease(List param) {
 		int iCnt = 0;
 		int uCnt = 0;

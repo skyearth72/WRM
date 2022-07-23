@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.inswave.wrm.sample.beans.TempBean;
 import com.inswave.wrm.sample.beans.UserBean;
@@ -15,14 +15,15 @@ import com.inswave.wrm.sample.dao.LargeDataDao;
 import com.inswave.wrm.sample.dao.SampleDao;
 import com.inswave.wrm.sample.service.SampleService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class SampleServiceImpl implements SampleService {
 
-	@Resource(name = "largeDataDao")
-	private LargeDataDao largeDataDao;
+	private final LargeDataDao largeDataDao;
 
-	@Resource(name = "sampleDao")
-	private SampleDao sampleDao;
+	private final SampleDao sampleDao;
 
 	/**
 	 * 샘플목록 조회
@@ -40,6 +41,7 @@ public class SampleServiceImpl implements SampleService {
 	 * @param param Client 전달한 데이터 리스트 객체
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map saveSample(List param) {
 		int iCnt = 0;
 		int uCnt = 0;
@@ -90,6 +92,7 @@ public class SampleServiceImpl implements SampleService {
 	 * @param param Client 전달한 데이터 맵 객체
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map update(List param) {
 		int iCnt = 0;
 		int uCnt = 0;
@@ -143,6 +146,7 @@ public class SampleServiceImpl implements SampleService {
 	 * @param param Client 전달한 데이터 bean
 	 */
 	@Override
+	@Transactional(value="dbTransactionManager", propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
 	public Map updateBean(List<TempBean> tListbean) {
 		int iCnt = 0;
 		int uCnt = 0;

@@ -3,22 +3,21 @@ package com.inswave.wrm.sample.service.impl;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 
 import com.inswave.wrm.sample.dao.LargeDataDao;
 import com.inswave.wrm.sample.dao.ZipCodeStreetDao;
 import com.inswave.wrm.sample.service.ZipCodeService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service("zipCodeService")
+@RequiredArgsConstructor
 public class ZipCodeServiceImpl implements ZipCodeService {
 
-	@Resource(name = "largeDataDao")
-	private LargeDataDao largeDataDao;
+	private final LargeDataDao largeDataDao;
 
-	@Resource(name = "zipCodeStreetDao")
-	private ZipCodeStreetDao zipCodeStreetDao;
+	private final ZipCodeStreetDao zipCodeStreetDao;
 
 	@Override
 	public List selectZipCodeStreet(Map param) {
