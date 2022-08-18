@@ -20,6 +20,13 @@ eclipse {
 }
 
 configurations {
+	  implementation {
+	    exclude module: 'log4j-api'
+	    exclude module: 'log4j-to-slf4j'
+	    
+	    exclude group: 'xml-apis', module: 'xml-apis'
+	  }
+
     compileOnly {
         extendsFrom annotationProcessor
     }
@@ -27,19 +34,6 @@ configurations {
 
 repositories {
 	//Maven Local Repository 관련 참고 URL : https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:local-repos
-
-
-    flatDir {
-        //Websquare5 관련 Library
-        dirs "C:\\WEBSQUARE_DEV_PACK\\maven\\local_repository\\websquare\\websquare\\5.0_4.4547B.20211124.201933_1.5"
-
-        //Websquare5 관련 Library 인데 뭐하는 용도인지???
-        dirs "C:\\WEBSQUARE_DEV_PACK\\maven\\local_repository\\org\\apache\\batik-all\\1.7.1-20150510"
-        //Websquare5 관련 Library 인데 뭐하는 용도인지???
-        dirs "C:\\WEBSQUARE_DEV_PACK\\maven\\local_repository\\batik\\pdf-transcoder\\1.0beta2"
-    }
-
-    mavenLocal()
     mavenCentral()
 }
 
@@ -85,11 +79,17 @@ dependencies {
     implementation 'commons-io:commons-io:2.11.0'
 
 
-    //Websquare5
-    implementation 'websquare:websquare:5.0_4.4547B.20211124.201933_1.5'
-    runtimeOnly('xerces:xercesImpl:2.12.2'){
-    	exclude group: 'xml-apis', module: 'xml-apis'
-    }
+	//-----------------------------------------------------------------------------------------
+    //Websquare5 관련 Dependency Library
+	//-----------------------------------------------------------------------------------------    
+    implementation files("C:\\verygoodtour\\repository\\websquare5-depenency-library\\websquare\\websquare\\5.0_4.4645B.20220520.151005_1.5\\websquare-5.0_4.4645B.20220520.151005_1.5.jar")
+    
+	//Websquare5 관련 Library 인데 뭐하는 용도인지???
+    runtimeOnly files("C:\\verygoodtour\\repository\\websquare5-depenency-library\\org\\apache\\batik-all\\1.7.1-20150510\\org.apache:batik-all:1.7.1-20150510")
+	//Websquare5 관련 Library 인데 뭐하는 용도인지???    
+    runtimeOnly files("C:\\verygoodtour\\repository\\websquare5-depenency-library\\batik\\pdf-transcoder\\1.0beta2\\batik:pdf-transcoder:1.0beta2")    
+    
+    runtimeOnly('xerces:xercesImpl:2.12.2')
 
     // Microsoft 엑셀문서 작성(apache POI) 관련
     runtimeOnly 'org.apache.poi:ooxml-schemas:1.4'
@@ -100,16 +100,7 @@ dependencies {
     runtimeOnly 'org.apache.poi:poi-excelant:3.10-FINAL'
     runtimeOnly 'org.apache.poi:poi-scratchpad:3.10-FINAL'
     runtimeOnly 'org.apache.poi:poi-ooxml-schemas:3.10-FINAL'
-
-
-//Websquare5 관련 Library 인데 뭐하는 용도인지???
-//    runtimeOnly('org.apache:batik-all:1.7.1-20150510'){
-//    	exclude group: "xml-apis", module: "xml-apis"
-//    }
-//
-//    runtimeOnly 'batik:pdf-transcoder:1.0beta2'
-
-
+	//-----------------------------------------------------------------------------------------
 
 }
 
@@ -122,7 +113,7 @@ targetCompatibility = '11'
 // --stacktrace 항상
 gradle.startParameter.showStacktrace = org.gradle.api.logging.configuration.ShowStacktrace.ALWAYS
 
-/*
+
 publishing {
     publications {
         maven(MavenPublication) {
@@ -130,7 +121,6 @@ publishing {
         }
     }
 }
-*/
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'

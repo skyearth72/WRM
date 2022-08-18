@@ -150,6 +150,8 @@
 		<!-- parameter이름=value 형태로 보내고자 할때 보낼 parameter이름 -->
 		<requestID value="" />
 		<requestHeaderFunction value="gcm._setRequestHeaderFunction" />
+		<!-- <externalResponseHandler value="gcm._externalResponseHandler" /> --><!-- 어떻게 사용하는가? -->
+		
 	</submission>
 
 	<!--
