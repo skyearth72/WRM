@@ -12,7 +12,7 @@ server:
 spring:
   devtools:
     livereload:
-      enabled: true
+      enabled: false
     restart:
       enabled: false
   mvc:

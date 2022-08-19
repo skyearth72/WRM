@@ -94,9 +94,7 @@ dependencies {
     // Microsoft 엑셀문서 작성(apache POI) 관련
     runtimeOnly 'org.apache.poi:ooxml-schemas:1.4'
     runtimeOnly 'org.apache.poi:poi:3.10-FINAL'
-    runtimeOnly ('org.apache.poi:poi-ooxml:3.10-FINAL'){
-    	exclude group: 'xml-apis', module: 'xml-apis'
-    }
+    runtimeOnly 'org.apache.poi:poi-ooxml:3.10-FINAL'
     runtimeOnly 'org.apache.poi:poi-excelant:3.10-FINAL'
     runtimeOnly 'org.apache.poi:poi-scratchpad:3.10-FINAL'
     runtimeOnly 'org.apache.poi:poi-ooxml-schemas:3.10-FINAL'
@@ -106,22 +104,14 @@ dependencies {
 
 group = 'com.inswave'
 version = '0.0.1-SNAPSHOT'
-description = 'demo'
-sourceCompatibility = '11'
-targetCompatibility = '11'
+description = 'WRM'
+java.sourceCompatibility = JavaVersion.VERSION_11
+java.targetCompatibility = JavaVersion.VERSION_11
 
 // --stacktrace 항상
 gradle.startParameter.showStacktrace = org.gradle.api.logging.configuration.ShowStacktrace.ALWAYS
 
 
-publishing {
-    publications {
-        maven(MavenPublication) {
-            from(components.java)
-        }
-    }
-}
-
 tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+  options.encoding = 'UTF-8'
 }
